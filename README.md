@@ -1,6 +1,9 @@
 # guohua_zhang_homework
 
 
-https://chat.google.com/room/AAAAP3yMwoo/fvraEkr4j0s/fvraEkr4j0s?cls=10
+Chat: https://chat.google.com/room/AAAAP3yMwoo/fvraEkr4j0s/fvraEkr4j0s?cls=10
 
-https://meet.google.com/xom-jutr-kek
+Meeting: https://meet.google.com/xom-jutr-kek
+
+JS Question: https://javascript-questions.vercel.app/
+JS Leetcode: https://leetcode.com/studyplan/30-days-of-javascript/
