@@ -7,3 +7,7 @@ Meeting: https://meet.google.com/xom-jutr-kek
 
 JS Question: https://javascript-questions.vercel.app/
 JS Leetcode: https://leetcode.com/studyplan/30-days-of-javascript/
+
+
+git: https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project
+git tool: https://learngitbranching.js.org/
