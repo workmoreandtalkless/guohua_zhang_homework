@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selectedItems</title>
+</head>
+<body>
+
+    <div id="cart"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">/* here should be babel */
+         
+         class ShoppingCart extends React.Component {
+            state = {
+                items: [
+                    { name: "Apple", price: 0.99, quantity: 0 },
+                    { name: "Banana", price: 0.49, quantity: 0 },
+                    { name: "Mango", price: 1.99, quantity: 0 },
+                    { name: "Strawberry", price: 2.49, quantity: 0 },
+                ]
+            }
+
+            increase = (name) => {
+                const {items} = this.state;
+                return (event) => {
+                    event.preventDefault();
+                    // console.log(event.target);
+                    this.setState({
+                        items: items.map(item => {
+                            if(item.name === name){
+                                return {...item, quantity: item.quantity + 1};
+                            }
+                            return item;
+                        })
+                    });
+                };
+            }
+
+            decrease = (name) => {
+                const {items} = this.state;
+                // debugger
+                return (event) => {
+                    event.preventDefault();
+                    // console.log(event.target);
+                    this.setState({
+                        items: items.map(item => {
+                            if(item.name === name && item.quantity > 0){
+                                return {...item, quantity: item.quantity - 1};
+                            }
+                            return item;
+                        })
+                    });
+                }
+            }
+            render() {
+                const {items} = this.state;
+                return (
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {items.map(item => (
+                                    <tr key={item.name}>
+                                        <td>{item.name}</td>
+                                        <td>{item.price}</td>
+                                        <td>
+                                            <button onClick={this.decrease(item.name)}>-</button>
+                                            <span> {item.quantity} </span> 
+                                            <button onClick={this.increase(item.name)}>+</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>        
+                        </table>
+                        
+                    </div>
+                );
+            }
+        }
+
+            ReactDOM.render(<ShoppingCart/>, document.getElementById('cart'));
+    </script>
+</body>
+</html>

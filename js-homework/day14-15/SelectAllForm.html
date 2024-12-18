@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selectedItems</title>
+</head>
+<body>
+
+    <div id="Form"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">/* here should be babel */
+         
+         class SelectForm extends React.Component {
+            state = {
+                items: ['item1', 'item2', 'item3'],
+                selectedItems: []
+            }
+            toggleSelectAll = ()=>{
+                const {items,selectedItems} = this.state;
+                if(selectedItems.length === items.length){
+                    this.setState({selectedItems: []});
+                }else{
+                    this.setState({selectedItems: [...items]});
+                }
+            }
+            render() {
+                const {items,selectedItems} = this.state;
+                return (
+                    <div>
+                        <h1>All the selected Items:</h1>
+                        <p> { selectedItems.join(",") || "Nothing selected"}</p>
+                                        
+                        <div>
+                            <label>
+                                <input type="checkbox"
+                                    checked={selectedItems.length === items.length}
+                                    onChange={this.toggleSelectAll}
+                                
+                                />
+                                <strong>Select All</strong>
+                            </label>
+                        </div>
+                        <div>
+                            {items.map(item => (
+                                <label key={item}>
+                                    <input type="checkbox"
+                                        checked={selectedItems.includes(item)}
+                                        onChange={e => {
+                                            if(e.target.checked){
+                                                this.setState({selectedItems: [...selectedItems, item]});
+                                            }else{
+                                                this.setState({selectedItems: selectedItems.filter(selectedItem => selectedItem !== item)});
+                                            }
+                                        }}
+                                    /> {item} <br></br>
+                                </label>
+                            ))}
+                        </div>
+
+                    </div>
+                );
+            }
+        }
+
+            ReactDOM.render(<SelectForm/>, document.getElementById('Form'));
+    </script>
+</body>
+</html>
