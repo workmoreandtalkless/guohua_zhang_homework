@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ticTacToe</title>
+</head>
+<body>
+
+    <div id="Tac"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">/* here should be babel */
+         
+
+        class TicTacToe extends React.Component {
+            state = {
+                squares: Array(9).fill(null),
+                xIsNext: true,
+                winner: null,
+            }
+
+            PutValue = (event) => {
+                console.log(event.target.name);
+                const i = event.target.name;
+                const {squares, xIsNext} = this.state;
+                const newSquares = squares.slice();
+                newSquares[i] = xIsNext ? 'X' : 'O';
+                this.setState({
+                    squares: newSquares,
+                    xIsNext: !xIsNext,
+                });
+            }
+            render() {
+                const {squares, xIsNext} = this.state;
+                return (
+                    <div>
+                    <div>
+                        <h1>Tic Tac Toe</h1>
+                        <div>
+                            <button name="1" onClick = {this.PutValue}>{squares[1]}</button>
+                            <button name = "2" onClick = {this.PutValue}>{squares[2]}</button>
+                            <button name = "3" onClick = {this.PutValue}>{squares[3]}</button>
+                        </div>
+                        <div>
+                            <button name = "4" onClick = {this.PutValue}>{squares[4]}</button>
+                            <button name = "5" onClick = {this.PutValue}>{squares[5]}</button>
+                            <button name = "6" onClick = {this.PutValue}>{squares[6]}</button>
+                        </div>
+                        <div>
+                            <button name = "7" onClick = {this.PutValue}>{squares[7]}</button>
+                            <button name = "8" onClick = {this.PutValue}>{squares[8]}</button>
+                            <button name = "9" onClick = {this.PutValue}>{squares[9]}</button>
+                        </div>
+                    </div>
+
+                    <div>Winner:{winner}</div>
+                </div>
+                );
+            }
+        }
+
+            ReactDOM.render(<TicTacToe/>, document.getElementById('Tac'));
+    </script>
+</body>
+</html>

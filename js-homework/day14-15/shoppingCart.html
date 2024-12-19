@@ -23,7 +23,8 @@
                     { name: "Banana", price: 0.49, quantity: 0 },
                     { name: "Mango", price: 1.99, quantity: 0 },
                     { name: "Strawberry", price: 2.49, quantity: 0 },
-                ]
+                ],
+                buttonsDisabled: false,
             }
 
             increase = (name) => {
@@ -58,8 +59,20 @@
                     });
                 }
             }
-            render() {
+
+            clearCar = () => {
                 const {items} = this.state;
+                this.setState({
+                    items: items.map(item => ({...item, quantity: 0}))
+                });
+            }
+            checkOut = (event) => {
+                const {buttonsDisabled} = this.state;
+                this.setState({buttonsDisabled: !buttonsDisabled});
+            }
+            render() {
+                const {items,buttonsDisabled} = this.state;
+                const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
                 return (
                     <div>
                         <table>
@@ -76,15 +89,17 @@
                                         <td>{item.name}</td>
                                         <td>{item.price}</td>
                                         <td>
-                                            <button onClick={this.decrease(item.name)}>-</button>
+                                            <button disabled={buttonsDisabled} onClick={this.decrease(item.name)}>-</button>
                                             <span> {item.quantity} </span> 
-                                            <button onClick={this.increase(item.name)}>+</button>
+                                            <button disabled={buttonsDisabled} onClick={this.increase(item.name)}>+</button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>        
                         </table>
                         
+                        <div> Total price: {total}</div><br></br>
+                        <button onClick={this.checkOut}>checkout</button> <button onClick={this.clearCar}>empty car</button>
                     </div>
                 );
             }
