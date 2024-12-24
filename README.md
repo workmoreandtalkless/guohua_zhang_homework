@@ -40,3 +40,9 @@ react:
 1. error boundary
 2. react lifecycle methods diagram
 3. 
+
+list KT:
+
+1. setNumber VS getNumber
+2. fetch and post api
+3. 
